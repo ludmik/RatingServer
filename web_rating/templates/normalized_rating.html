@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <title>VGL rating</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!--
+  <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}" type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}" type='text/css'>
+-->
+  <link rel="stylesheet" href="../static/style.css" type='text/css'>
+  <link rel="stylesheet" href="../static/css/style.css" type='text/css'>
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+  <script type="text/javascript">
+        function rangeSlide(value, id) {
+            document.getElementById(id).innerHTML = value;
+        }
+  </script>
+  <script type="text/javascript">
+        let HideFlag = 0;
+        function HideTable(id) {
+            if (HideFlag == 1) {
+                document.getElementById(id).style.display = "none";
+            } else {
+                document.getElementById(id).style.display = "block";
+                document.getElementById(id).scrollIntoView();
+            }
+            HideFlag = (HideFlag + 1) % 2;
+        }
+  </script>
+  <script type="text/javascript">
+      function go_to_rating() {
+        window.location.hash = ""; /* to fix WebKit bug */;
+        window.location.hash = "rating";
+      };
+  </script>
+  <script src="{{ url_for('static', filename='/js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/js/popper.js') }}"></script>
+  <script src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/js/main.js') }}"></script>
+</head>
+
+<body> 
+    <table id="MainTable">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Normalized VGL rating</h2>
+      	  </div>
+        </div>
+        <tr>
+            <td>
+	    <form method="GET" action="{{url_for('home')}}">
+                <body>
+                <section class="ftco-section">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center mb-5">
+                                <h2 class="heading-section"></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrap">
+                                    <table class="table table-bordered table-dark table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th>Graph category</th>
+                                          <th>Input</th>
+                                          <th>Algorithm</th>
+                                          <th>Input</th>
+                                          <th>Vertices scale category</th>
+                                          <th>Input</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td class="text">Synthetic</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="1">50</span>
+                                                    <Input class="range" type="range" name="synthetic" value="{{slider_vals['synthetic']}}" min="0" max="100" onChange="rangeSlide(this.value, '1')" onmousemove="rangeSlide(this.value, '1')"></Input>
+                                                </td>
+                                              </div>
+                                          <td class="text">Page Rank</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="2">50</span>
+						    <Input class="range" type="range" name="pr" value="{{slider_vals['pr']}}" min="0" max="100" onChange="rangeSlide(this.value, '2')" onmousemove="rangeSlide(this.value, '2')"></Input>
+                                                </td>
+                                              </div>
+                                            </div>
+                                          <td class="text">Tiny</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="3">50</span>
+                                                    <Input class="range" type="range" name="tiny_vertex_scale" value="{{slider_vals['tiny_vertex_scale']}}" min="0" max="100" onChange="rangeSlide(this.value, '3')" onmousemove="rangeSlide(this.value, '3')"></Input>
+                                                </td>
+                                              </div>
+                                        </tr>
+                                        <tr>
+                                          <td class="text">Social</td>
+                                            <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="4">50</span>
+                                                    <Input class="range" type="range" name="Online social network" value="{{slider_vals['Online social network']}}" min="0" max="100" onChange="rangeSlide(this.value, '4')" onmousemove="rangeSlide(this.value, '4')"></Input>
+                                                </td>
+                                              </div>
+                                          <td class="text">HITS</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="5">50</span>
+                                                    <Input class="range" type="range" name="hits" value="{{slider_vals['hits']}}" min="0" max="100" onChange="rangeSlide(this.value, '5')" onmousemove="rangeSlide(this.value, '5')"></Input>
+                                                </td>
+                                              </div>
+                                          <td class="text">Small</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="6">50</span>
+                                                    <Input class="range" type="range" name="small_vertex_scale" value="{{slider_vals['small_vertex_scale']}}" min="0" max="100" onChange="rangeSlide(this.value, '6')" onmousemove="rangeSlide(this.value, '6')"></Input>
+                                                </td>
+                                              </div>
+                                        </tr>
+                                        <tr>
+                                          <td class="text">Hyperlink</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="7">50</span>
+                                                    <Input class="range" type="range" name="Hyperlink network" value="{{slider_vals['Hyperlink network']}}" min="0" max="100" onChange="rangeSlide(this.value, '7')" onmousemove="rangeSlide(this.value, '7')"></Input>
+                                                </td>
+                                              </div>
+                                          <td>Shortest Paths</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="8">50</span>
+                                                    <Input class="range" type="range" name="sssp" value="{{slider_vals['sssp']}}" min="0" max="100" onChange="rangeSlide(this.value, '8')" onmousemove="rangeSlide(this.value, '8')"></Input>
+                                                </td>
+                                              </div>
+                                          <td class="text">Medium</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="9">50</span>
+                                                    <Input class="range" type="range" name="medium_vertex_scale" value="{{slider_vals['medium_vertex_scale']}}" min="0" max="100" onChange="rangeSlide(this.value, '9')" onmousemove="rangeSlide(this.value, '9')"></Input>
+                                                </td>
+                                              </div>
+                                        </tr>
+                                        <tr>
+                                          <td class="text">Infrastructure</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="10">50</span>
+                                                    <Input class="range" type="range" name="Infrastructure network" value="{{slider_vals['Infrastructure network']}}" min="0" max="100" onChange="rangeSlide(this.value, '10')" onmousemove="rangeSlide(this.value, '10')"></Input>
+                                                </td>
+                                              </div>
+                                          <td class="text">BFS</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="11">50</span>
+                                                    <Input class="range" type="range" name="bfs" value="{{slider_vals['bfs']}}" min="0" max="100" onChange="rangeSlide(this.value, '11')" onmousemove="rangeSlide(this.value, '11')"></Input>
+                                                </td>
+                                              </div>
+                                          <td class="text">Large</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="12">50</span>
+                                                    <Input class="range" type="range" name="large_vertex_scale" value="{{slider_vals['large_vertex_scale']}}" min="0" max="100" onChange="rangeSlide(this.value, '12')" onmousemove="rangeSlide(this.value, '12')"></Input>
+                                                </td>
+                                              </div>
+                                        </tr>
+					<tr>
+                                          <td class="text">Rating network</td>
+                                              <div class = "slider">
+                                                <td>
+                                                    <span class="rangeValue" id="13">50</span>
+                                                    <Input class="range" type="range" name="Rating network" value="{{slider_vals['Rating network']}}" min="0" max="100" onChange="rangeSlide(this.value, '13')" onmousemove="rangeSlide(this.value, '12')"></Input>
+                                                </td>
+					      </div>
+					</tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </body>
+                <input id="SubmitButton" type="submit" value="Update Rating">
+            </form>
+
+
+            </td>
+            <td>
+            {% block content %}
+            <div id="rating" class="home">
+                <body>
+                <section class="ftco-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrap">
+                                    <table class="table table-bordered table-dark table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th>№</th>
+                                          <th>Архитектура</th>
+                                          <th>Рейтинг</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {% for result in rating_data %}
+                                        <tr>
+                                            <td>{{result.pos}}</td>
+                                            <td>{{result.arch}}</td>
+                                            <td>{{result.rating}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </body>
+            </div>
+            {% endblock %}
+            </td>
+        </tr>
+    </table>
+</body>
+
+<body>
+    <input id="ExtraButton" type="submit" value="Additional info" onclick="HideTable('ExtraTable')">
+    <section class="ftco-section">
+        <div id="ExtraTable" class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table table-bordered table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <td>Алгоритм</td>
+                                    {%for graph_name in full_perf_table['pr']%}
+                                        <td> {{graph_name}} </td>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for app_name,app_data in full_perf_table.items() %}
+                                <tr>
+                                    <td> {{app_name}} </td>
+                                    {% for graph_name,graph_data in app_data.items() %}
+                                        <td>
+                                            {% for item in graph_data %}
+                                                {{item['arch_name']}}___{{item['perf_val']}}__MTEPS <br>
+                                            {% endfor %}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+
