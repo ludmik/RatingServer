@@ -94,18 +94,23 @@ def listen_to_users(port_name):
             try:
                 recv_data = conn.recv(4024*4)
                 if not recv_data:
-                    break
-
-                benchmarking_data = pickle.loads(recv_data)
-                if process_results(benchmarking_data):
-                    response = "accepted"
+                    raise ConnectionError
                 else:
-                    response = "NOT accepted"
+                    benchmarking_data = pickle.loads(recv_data)
+                    if process_results(benchmarking_data):
+                        response = "Accepted"
+                    else:
+                        raise LoadError
 
                 conn.sendall(response.encode())
+
             except socket.error:
-                print("Error Occured.")
-                break
+                response = "Not Accepted. Socket Error."
+            except ConnectionError:
+                response = "Not Accepted. Connection Error."
+            except LoadError:
+                response = "Not Accepted. Load Error."
+
 
         conn.close()
 

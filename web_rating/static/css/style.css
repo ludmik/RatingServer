@@ -193,6 +193,11 @@ td {
   top:  18px;
 }
 
+.inner_text {
+  position: relative;
+
+}
+
 
 label {
   display: inline-block;
@@ -456,12 +461,27 @@ pre {
   overflow-y: scroll; }
 
 #ExtraTable {
-  padding-left: -100px;
-  padding-right: 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+#MainTable {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+#ButtonTable td {
+   padding:  0px 100px;
+}
+
+/*#Results td {
+   padding: 10px 0px;
+}*/
 
 .container {
   width: 100%;
+  height: 100%;
   padding-right: 15px; /* сдвиг таблицы справа */
   padding-left: 15px; /* сдвиг таблицы слева */
   margin-right: auto;
@@ -479,10 +499,6 @@ pre {
     .container {
       max-width: 1140px; } }
 
-#ExtraTable {
-  padding-right: 0px; /* сдвиг таблицы справа */
-  padding-left: 0px; /* сдвиг таблицы слева */
-}
 
 
 .container-fluid {
@@ -8208,7 +8224,7 @@ h1, h2, h3, h4, h5,
   min-width: 14px !important;
   width: 100%; }
   .table thead th {
-/*    border: none; */
+    border: none; 
     padding: 20px 30px;
     font-size: 14px; /* размер заголовка */
     color: #fff; /* цвет текста в заголовках таблицы */
@@ -8216,7 +8232,15 @@ h1, h2, h3, h4, h5,
   .table tbody tr {
     margin-bottom: 10px; }
   .table tbody th, .table tbody td {
-/*    border: none; */
-    padding: 20px 30px;
+    border: none; 
+    padding: 10px 30px;
     border-bottom: 3px solid #2b3035;
     font-size: 14px; } /* размер простого текста */
+
+ #BorderRight {
+    border-right: 1px solid #2b3035;
+ }
+
+ #BorderLeft {
+    border-left: 1px solid #2b3035;
+ }

@@ -61,9 +61,11 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 3px #00fd0a;
+  /*
   position: relative;
-  left: -200px;
+  left: -150px;
   top: 0px;
+  */
 }
 
 #SubmitButton:hover {background-color: #343a40}
@@ -72,9 +74,11 @@
   background-color: #343a40;
   box-shadow: 0 5px red;
   transform: translateY(4px);
+  /*
   position: relative;
-  left: -200px;
+  left: -150px;
   top: 0px;
+  */
 }
 
 #ExtraButton {
@@ -90,9 +94,11 @@
   border: none;
   border-radius: 15px;
   box-shadow: 0 3px #00fd0a;
+  /*
   position: relative;
-  left: 600px;
+  left: 550px;
   top: -54px;
+  */
 }
 
 #ExtraButton:hover {
@@ -103,9 +109,11 @@
   background-color: #343a40;
   box-shadow: 0 5px red;
   transform: translateY(4px);
+  /*
   position: relative;
-  left: 600px;
+  left: 550px;
   top: -54px;
+  */
 }
 
 #ExtraTable {
